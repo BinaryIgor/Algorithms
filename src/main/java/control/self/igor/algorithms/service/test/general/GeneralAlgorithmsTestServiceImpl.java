@@ -3,46 +3,60 @@ package control.self.igor.algorithms.service.test.general;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import control.self.igor.algorithms.algorithm.general.SumTwoNumbersAlgorithm;
-import control.self.igor.algorithms.creator.problem.ProblemFactory;
-import control.self.igor.algorithms.creator.report.SumTwoNumbersTestReportCreator;
 import control.self.igor.algorithms.model.DurationWithUnit;
-import control.self.igor.algorithms.model.problem.TwoNumbers;
+import control.self.igor.algorithms.model.algorithm.SolvedAlgorithm;
+import control.self.igor.algorithms.model.algorithm.SolvedAlgorithms;
 import control.self.igor.algorithms.model.problem.TwoNumbersAsArrays;
-import control.self.igor.algorithms.model.test.AlgorithmTest;
-import control.self.igor.algorithms.model.test.AlgorithmsTests;
-import control.self.igor.algorithms.model.test.AlgorithmsTestsReports;
+import control.self.igor.algorithms.model.report.AlgorithmsTestsReport;
+import control.self.igor.algorithms.service.algorithm.general.SumTwoNumbersAlgorithmService;
+import control.self.igor.algorithms.service.problem.general.SumTwoNumbersProblemService;
+import control.self.igor.algorithms.service.report.general.SumTwoNumbersReportService;
 
 @Service
 public class GeneralAlgorithmsTestServiceImpl implements GeneralAlgorithmsTestService {
 
+    private SumTwoNumbersProblemService sumTwoNumbersProblemService;
+    private SumTwoNumbersAlgorithmService sumTwoNumbersAlgorithmService;
+    private SumTwoNumbersReportService sumTwoNumbersReportService;
+
+    @Autowired
+    public GeneralAlgorithmsTestServiceImpl(SumTwoNumbersProblemService sumTwoNumbersProblemService,
+	    SumTwoNumbersAlgorithmService sumTwoNumbersAlgorithmService,
+	    SumTwoNumbersReportService sumTwoNumbersReportService) {
+	this.sumTwoNumbersProblemService = sumTwoNumbersProblemService;
+	this.sumTwoNumbersAlgorithmService = sumTwoNumbersAlgorithmService;
+	this.sumTwoNumbersReportService = sumTwoNumbersReportService;
+    }
+
     @Override
-    public AlgorithmsTestsReports testSumTwoNumbersAlgorithm(int testsNumber) {
-	List<TwoNumbersAsArrays> problems = ProblemFactory.create(TwoNumbersAsArrays.class, testsNumber);
-	List<AlgorithmTest<TwoNumbers<int[]>, int[]>> sumTwoNumbersTests = new ArrayList<>();
+    public AlgorithmsTestsReport testSumTwoNumbersAlgorithm(int testsNumber) {
+	List<TwoNumbersAsArrays> problems = sumTwoNumbersProblemService.createProblems(testsNumber);
 	long startTime = System.nanoTime();
-	for (TwoNumbers<int[]> problem : problems)
-	    sumTwoNumbersTests.add(testSumTwoNumbers(problem));
+	List<SolvedAlgorithm<TwoNumbersAsArrays, int[]>> solvedSumTwoNumbersAlgorithms = solveSumsTwoNumbers(problems);
 	long endTime = System.nanoTime();
 	DurationWithUnit findingAllSolutionsDuration = DurationWithUnit.createMillisFromNanos(endTime - startTime);
-	return createReports(
-		new AlgorithmsTests<TwoNumbers<int[]>, int[]>(findingAllSolutionsDuration, sumTwoNumbersTests));
+	SolvedAlgorithms<TwoNumbersAsArrays, int[]> solvedAlgorithms = new SolvedAlgorithms<>(
+		findingAllSolutionsDuration, solvedSumTwoNumbersAlgorithms);
+	return sumTwoNumbersReportService.createReport(solvedAlgorithms);
     }
 
-    private AlgorithmsTestsReports createReports(AlgorithmsTests<TwoNumbers<int[]>, int[]> algorithmsTests) {
-	SumTwoNumbersTestReportCreator creator = new SumTwoNumbersTestReportCreator();
-	return creator.create(algorithmsTests);
+    private List<SolvedAlgorithm<TwoNumbersAsArrays, int[]>> solveSumsTwoNumbers(List<TwoNumbersAsArrays> problems) {
+	List<SolvedAlgorithm<TwoNumbersAsArrays, int[]>> solvedSumTwoNumbersAlgorithms = new ArrayList<>();
+	for (TwoNumbersAsArrays problem : problems) {
+	    solvedSumTwoNumbersAlgorithms.add(solveSumTwoNumbers(problem));
+	}
+	return solvedSumTwoNumbersAlgorithms;
     }
 
-    private AlgorithmTest<TwoNumbers<int[]>, int[]> testSumTwoNumbers(TwoNumbers<int[]> problem) {
+    private SolvedAlgorithm<TwoNumbersAsArrays, int[]> solveSumTwoNumbers(TwoNumbersAsArrays problem) {
 	long startTime = System.nanoTime();
-	SumTwoNumbersAlgorithm algorithm = new SumTwoNumbersAlgorithm(problem);
-	int[] solution = algorithm.solve();
+	int[] solution = sumTwoNumbersAlgorithmService.solve(problem);
 	long endTime = System.nanoTime();
 	DurationWithUnit findingSolutionDuration = DurationWithUnit.createMicrosFromNanos(endTime - startTime);
-	return new AlgorithmTest<TwoNumbers<int[]>, int[]>(problem, solution, findingSolutionDuration);
+	return new SolvedAlgorithm<TwoNumbersAsArrays, int[]>(problem, solution, findingSolutionDuration);
     }
 
 }

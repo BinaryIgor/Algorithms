@@ -1,8 +1,8 @@
 package control.self.igor.algorithms.service.test.general;
 
-import control.self.igor.algorithms.model.test.AlgorithmsTestsReports;
+import control.self.igor.algorithms.model.report.AlgorithmsTestsReport;
 
 public interface GeneralAlgorithmsTestService {
 
-    AlgorithmsTestsReports testSumTwoNumbersAlgorithm(int testsNumber);
+    AlgorithmsTestsReport testSumTwoNumbersAlgorithm(int testsNumber);
 }

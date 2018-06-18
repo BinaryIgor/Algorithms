@@ -1,19 +1,18 @@
-package control.self.igor.algorithms.algorithm.general;
+package control.self.igor.algorithms.service.algorithm.general;
 
 import java.util.Arrays;
 
-import control.self.igor.algorithms.algorithm.Algorithm;
+import org.springframework.stereotype.Service;
+
 import control.self.igor.algorithms.exception.SolverConditionException;
-import control.self.igor.algorithms.model.problem.TwoNumbers;
+import control.self.igor.algorithms.model.problem.TwoNumbersAsArrays;
+import control.self.igor.algorithms.service.algorithm.AlgorithmService;
 
-public class SumTwoNumbersAlgorithm extends Algorithm<TwoNumbers<int[]>, int[]> {
-
-    public SumTwoNumbersAlgorithm(TwoNumbers<int[]> problem) {
-	super(problem);
-    }
+@Service
+public class SumTwoNumbersAlgorithmService implements AlgorithmService<TwoNumbersAsArrays, int[]> {
 
     @Override
-    public int[] solve() {
+    public int[] solve(TwoNumbersAsArrays problem) {
 	int[] first = problem.getFirst();
 	int[] second = problem.getSecond();
 	if (first.length > second.length)

@@ -1,4 +1,4 @@
-package control.self.igor.algorithms.model.test;
+package control.self.igor.algorithms.model.report;
 
 public class AlgorithmTestReport {
 

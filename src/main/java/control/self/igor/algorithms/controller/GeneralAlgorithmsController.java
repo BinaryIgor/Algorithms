@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import control.self.igor.algorithms.model.test.AlgorithmsTestsReports;
+import control.self.igor.algorithms.model.report.AlgorithmsTestsReport;
 import control.self.igor.algorithms.service.test.general.GeneralAlgorithmsTestService;
 
 @RestController
@@ -19,7 +19,7 @@ public class GeneralAlgorithmsController {
     }
 
     @GetMapping("/sum")
-    public AlgorithmsTestsReports sum() {
+    public AlgorithmsTestsReport sum() {
 	return service.testSumTwoNumbersAlgorithm(TESTS_NUMBER);
     }
 }
