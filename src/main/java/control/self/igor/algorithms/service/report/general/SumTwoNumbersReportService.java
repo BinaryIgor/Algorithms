@@ -23,7 +23,7 @@ public class SumTwoNumbersReportService implements AlgorithmReportService<TwoNum
 	String problemReport = reportProblem(solvedAlgorithm.getProblem());
 	String solutionReport = reportSolution(solvedAlgorithm.getSolution());
 	String durationReport = reportDuration(solvedAlgorithm.getFindingSolutionDuration());
-	return new AlgorithmTestReport(problemReport, solutionReport, durationReport);
+	return new AlgorithmTestReport(solvedAlgorithm.getName(), problemReport, solutionReport, durationReport);
     }
 
     @Override

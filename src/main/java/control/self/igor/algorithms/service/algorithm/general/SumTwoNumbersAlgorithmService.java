@@ -52,4 +52,9 @@ public class SumTwoNumbersAlgorithmService implements AlgorithmService<TwoNumber
 	return sum;
     }
 
+    @Override
+    public String getAlgorithmName() {
+	return "SumTwoNumbersSimpleAlgorithm";
+    }
+
 }

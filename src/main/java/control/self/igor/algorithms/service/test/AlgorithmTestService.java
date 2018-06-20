@@ -11,13 +11,13 @@ import control.self.igor.algorithms.service.algorithm.AlgorithmService;
 import control.self.igor.algorithms.service.problem.ProblemService;
 import control.self.igor.algorithms.service.report.AlgorithmReportService;
 
-public abstract class AbstractAlgorithmsTestService<Problem, Solution> {
+public class AlgorithmTestService<Problem, Solution> {
 
     private ProblemService<Problem> problemService;
     private AlgorithmService<Problem, Solution> algorithmService;
     private AlgorithmReportService<Problem, Solution> algoritmReportService;
 
-    public AbstractAlgorithmsTestService(ProblemService<Problem> problemService,
+    public AlgorithmTestService(ProblemService<Problem> problemService,
 	    AlgorithmService<Problem, Solution> algorithmService,
 	    AlgorithmReportService<Problem, Solution> algoritmReportService) {
 	this.problemService = problemService;
@@ -28,27 +28,28 @@ public abstract class AbstractAlgorithmsTestService<Problem, Solution> {
     public AlgorithmsTestsReport testAlgorithm(int testsNumber) {
 	List<Problem> problems = problemService.createProblems(testsNumber);
 	long startTime = System.nanoTime();
-	List<SolvedAlgorithm<Problem, Solution>> solvedAlgorithmsCollection = solveAlgorithms(problems);
+	List<SolvedAlgorithm<Problem, Solution>> solvedAlgorithmsCollection = testAlgorithms(problems);
 	long endTime = System.nanoTime();
-	DurationWithUnit findingAllSolutionsDuration = DurationWithUnit.createMillisFromNanos(endTime - startTime);
+	DurationWithUnit findingAllSolutionsDuration = DurationWithUnit.createFromNanos(endTime - startTime);
 	SolvedAlgorithms<Problem, Solution> solvedAlgorithms = new SolvedAlgorithms<>(findingAllSolutionsDuration,
 		solvedAlgorithmsCollection);
 	return algoritmReportService.createReport(solvedAlgorithms);
     }
 
-    private List<SolvedAlgorithm<Problem, Solution>> solveAlgorithms(List<Problem> problems) {
+    private List<SolvedAlgorithm<Problem, Solution>> testAlgorithms(List<Problem> problems) {
 	List<SolvedAlgorithm<Problem, Solution>> solvedAlgorithms = new ArrayList<>();
 	for (Problem problem : problems) {
-	    solvedAlgorithms.add(solveAlgorithm(problem));
+	    solvedAlgorithms.add(testAlgorithm(problem));
 	}
 	return solvedAlgorithms;
     }
 
-    private SolvedAlgorithm<Problem, Solution> solveAlgorithm(Problem problem) {
+    private SolvedAlgorithm<Problem, Solution> testAlgorithm(Problem problem) {
 	long startTime = System.nanoTime();
 	Solution solution = algorithmService.solve(problem);
 	long endTime = System.nanoTime();
-	DurationWithUnit findingSolutionDuration = DurationWithUnit.createNanos(endTime - startTime);
-	return new SolvedAlgorithm<Problem, Solution>(problem, solution, findingSolutionDuration);
+	DurationWithUnit findingSolutionDuration = DurationWithUnit.createFromNanos(endTime - startTime);
+	return new SolvedAlgorithm<Problem, Solution>(algorithmService.getAlgorithmName(), problem, solution,
+		findingSolutionDuration);
     }
 }

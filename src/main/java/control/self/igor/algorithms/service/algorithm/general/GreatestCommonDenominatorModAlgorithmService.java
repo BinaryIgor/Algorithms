@@ -17,4 +17,9 @@ public class GreatestCommonDenominatorModAlgorithmService implements AlgorithmSe
 	return first;
     }
 
+    @Override
+    public String getAlgorithmName() {
+	return "GreatestCommondDenominatorModAlgorithm";
+    }
+
 }

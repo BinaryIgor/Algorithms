@@ -1,13 +1,8 @@
 package control.self.igor.algorithms.model;
 
-import java.util.concurrent.TimeUnit;
-
 public class DurationWithUnit {
 
-    private static final String NANOS = "nanoseconds";
-    private static final String MICROS = "microseconds";
-    private static final String MILLIS = "milliseconds";
-
+    private final static int CHANGE_UNITS_THRESHOLD = 1000;
     private long duration;
     private String unit;
 
@@ -16,16 +11,29 @@ public class DurationWithUnit {
 	this.unit = unit;
     }
 
-    public static DurationWithUnit createNanos(long duration) {
-	return new DurationWithUnit(duration, NANOS);
+    public static DurationWithUnit createFromNanos(long durationInNanos) {
+	long duration;
+	DurationUnit unit;
+	if (durationInNanos < CHANGE_UNITS_THRESHOLD) {
+	    duration = durationInNanos;
+	    unit = DurationUnit.NANOS;
+	} else {
+	    int unitsChanges = getUnitsChanges(durationInNanos);
+	    unit = DurationUnit.values()[unitsChanges];
+	    duration = durationInNanos / ((long) Math.pow(CHANGE_UNITS_THRESHOLD, unitsChanges));
+	}
+	return new DurationWithUnit(duration, unit.value);
     }
 
-    public static DurationWithUnit createMicrosFromNanos(long duration) {
-	return new DurationWithUnit(TimeUnit.NANOSECONDS.toMicros(duration), MICROS);
-    }
-
-    public static DurationWithUnit createMillisFromNanos(long duration) {
-	return new DurationWithUnit(TimeUnit.NANOSECONDS.toMillis(duration), MILLIS);
+    private static int getUnitsChanges(long durationInNanos) {
+	int maximalUnitsChanges = DurationUnit.values().length - 1;
+	int unitChanges = 0;
+	long duration = durationInNanos;
+	while (duration >= CHANGE_UNITS_THRESHOLD && unitChanges <= maximalUnitsChanges) {
+	    duration /= CHANGE_UNITS_THRESHOLD;
+	    ++unitChanges;
+	}
+	return unitChanges;
     }
 
     public long getDuration() {
@@ -34,6 +42,21 @@ public class DurationWithUnit {
 
     public String getUnit() {
 	return unit;
+    }
+
+    public enum DurationUnit {
+	NANOS("nanos"), MICROS("micros"), MILLIS("millis"), SECONDS("seconds");
+
+	private String value;
+
+	DurationUnit(String value) {
+	    this.value = value;
+	}
+
+	public String getValue() {
+	    return value;
+	}
+
     }
 
 }
