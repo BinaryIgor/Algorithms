@@ -44,6 +44,11 @@ public class DurationWithUnit {
 	return unit;
     }
 
+    @Override
+    public String toString() {
+	return duration + " " + unit;
+    }
+
     public enum DurationUnit {
 	NANOS("nanos"), MICROS("micros"), MILLIS("millis"), SECONDS("seconds");
 

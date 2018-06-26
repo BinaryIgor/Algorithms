@@ -15,6 +15,7 @@ public class NumberGeneratorUtil {
     }
 
     public static int generateNumber(int min, int max) {
+	max = min >= 0 ? max : max - min;
 	return min + (int) (Math.random() * max);
     }
 }

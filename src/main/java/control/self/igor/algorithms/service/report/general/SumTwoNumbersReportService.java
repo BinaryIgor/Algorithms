@@ -44,14 +44,12 @@ public class SumTwoNumbersReportService implements AlgorithmReportService<TwoNum
     }
 
     private String reportDuration(DurationWithUnit findingSolutionDuration) {
-	return "Finding solution took " + findingSolutionDuration.getDuration() + " "
-		+ findingSolutionDuration.getUnit();
+	return "Finding solution took " + findingSolutionDuration;
     }
 
     private String reportGeneral(SolvedAlgorithms<TwoNumbersAsArrays, int[]> solvedAlgorithms) {
 	return "Solving " + solvedAlgorithms.getSolvedAlgorithms().size() + " problems took "
-		+ solvedAlgorithms.getFindingAllSolutionsDuration().getDuration() + " "
-		+ solvedAlgorithms.getFindingAllSolutionsDuration().getUnit();
+		+ solvedAlgorithms.getFindingAllSolutionsDuration();
     }
 
     private String numberToString(int[] number) {

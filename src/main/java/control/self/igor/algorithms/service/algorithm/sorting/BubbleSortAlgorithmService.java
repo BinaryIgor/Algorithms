@@ -11,14 +11,28 @@ public class BubbleSortAlgorithmService implements AlgorithmService<List<Integer
 
     @Override
     public List<Integer> solve(List<Integer> problem) {
-	// TODO Auto-generated method stub
-	return null;
+	int problemSize = problem.size();
+	boolean swapped;
+	do {
+	    swapped = false;
+	    for (int i = 1; i < problemSize; i++) {
+		Integer first = problem.get(i - 1);
+		Integer second = problem.get(i);
+		if (first > second) {
+		    problem.set(i - 1, second);
+		    problem.set(i, first);
+		    swapped = true;
+		}
+	    }
+	    --problemSize;
+
+	} while (swapped);
+	return problem;
     }
 
     @Override
     public String getAlgorithmName() {
-	// TODO Auto-generated method stub
-	return null;
+	return "Bubble Sort";
     }
 
 }
