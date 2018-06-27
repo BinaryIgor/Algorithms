@@ -25,8 +25,8 @@ public abstract class AbstractAlgorithmTestService<Problem, Solution> {
 	this.algoritmReportService = algoritmReportService;
     }
 
-    public AlgorithmsTestsReport testAlgorithm(int testsNumber) {
-	List<Problem> problems = problemService.createProblems(testsNumber);
+    public AlgorithmsTestsReport testAlgorithm(int testsNumber, int problemSize) {
+	List<Problem> problems = problemService.createProblems(testsNumber, problemSize);
 	long startTime = System.nanoTime();
 	List<SolvedAlgorithm<Problem, Solution>> solvedAlgorithmsCollection = testAlgorithms(problems);
 	long endTime = System.nanoTime();

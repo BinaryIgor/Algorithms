@@ -14,6 +14,7 @@ import control.self.igor.algorithms.service.test.general.GeneralAlgorithmsTestSe
 @RequestMapping("/general")
 public class GeneralAlgorithmsController {
 
+    private static final int MIN_NUMBER_LENGTH = 1;
     private GeneralAlgorithmsTestService service;
 
     @Autowired
@@ -22,10 +23,14 @@ public class GeneralAlgorithmsController {
     }
 
     @GetMapping("/sum")
-    public AlgorithmsTestsReport sum(@RequestParam("testsNumber") int testsNumber) {
-	if (testsNumber < 0) {
+    public AlgorithmsTestsReport sum(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maximalNumberLength", required = true) Integer maximalNumberLength) {
+	if (testsNumber < 1) {
 	    throw BadRequestException.createNotPositiveNumberException();
 	}
-	return service.testSumTwoNumbersAlgorithm(testsNumber);
+	if (maximalNumberLength == null || maximalNumberLength < MIN_NUMBER_LENGTH) {
+	    maximalNumberLength = MIN_NUMBER_LENGTH;
+	}
+	return service.testSumTwoNumbersAlgorithm(testsNumber, maximalNumberLength);
     }
 }

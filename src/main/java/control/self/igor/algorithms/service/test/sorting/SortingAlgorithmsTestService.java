@@ -4,5 +4,5 @@ import control.self.igor.algorithms.model.report.AlgorithmsTestsReport;
 
 public interface SortingAlgorithmsTestService {
 
-    AlgorithmsTestsReport testBubbleSort(int testsNumber);
+    AlgorithmsTestsReport testBubbleSort(int testsNumber, int maximalToSortListSize);
 }

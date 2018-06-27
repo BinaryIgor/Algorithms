@@ -12,24 +12,22 @@ import control.self.igor.algorithms.util.NumberGeneratorUtil;
 @Service
 public class SumTwoNumbersProblemService implements ProblemService<TwoNumbersAsArrays> {
 
-    private final static int MAX_NUMBER_LENGTH = 10;
-
     @Override
-    public TwoNumbersAsArrays createProblem() {
-	return getRandomTwoNumbers();
+    public TwoNumbersAsArrays createProblem(int problemSize) {
+	return getRandomTwoNumbers(problemSize);
     }
 
     @Override
-    public List<TwoNumbersAsArrays> createProblems(int problemsNumber) {
+    public List<TwoNumbersAsArrays> createProblems(int problemsNumber, int problemSize) {
 	List<TwoNumbersAsArrays> problems = new ArrayList<>();
 	for (int i = 0; i < problemsNumber; i++)
-	    problems.add(getRandomTwoNumbers());
+	    problems.add(getRandomTwoNumbers(problemSize));
 	return problems;
     }
 
-    private TwoNumbersAsArrays getRandomTwoNumbers() {
-	int[] first = NumberGeneratorUtil.generateNumber(MAX_NUMBER_LENGTH);
-	int[] second = NumberGeneratorUtil.generateNumber(MAX_NUMBER_LENGTH);
+    private TwoNumbersAsArrays getRandomTwoNumbers(int problemSize) {
+	int[] first = NumberGeneratorUtil.generateNumber(problemSize);
+	int[] second = NumberGeneratorUtil.generateNumber(problemSize);
 	return new TwoNumbersAsArrays(first, second);
     }
 

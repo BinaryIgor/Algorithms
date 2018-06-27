@@ -15,16 +15,15 @@ public class SortingProblemService implements ProblemService<List<Integer>> {
     private final static int MAX_NUMBER = 1000;
 
     @Override
-    public List<Integer> createProblem() {
-	int problemSize = NumberGeneratorUtil.generateNumber(1, MAX_NUMBER);
+    public List<Integer> createProblem(int problemSize) {
 	return getRandomIntegers(problemSize);
     }
 
     @Override
-    public List<List<Integer>> createProblems(int problemsNumber) {
+    public List<List<Integer>> createProblems(int problemsNumber, int problemSize) {
 	List<List<Integer>> problems = new ArrayList<>();
 	for (int i = 0; i < problemsNumber; i++) {
-	    problems.add(createProblem());
+	    problems.add(createProblem(problemSize));
 	}
 	return problems;
     }

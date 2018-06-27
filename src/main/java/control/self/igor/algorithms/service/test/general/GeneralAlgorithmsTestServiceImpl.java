@@ -18,8 +18,8 @@ public class GeneralAlgorithmsTestServiceImpl implements GeneralAlgorithmsTestSe
     }
 
     @Override
-    public AlgorithmsTestsReport testSumTwoNumbersAlgorithm(int testsNumber) {
-	return sumTwoNumbersTestService.testAlgorithm(testsNumber);
+    public AlgorithmsTestsReport testSumTwoNumbersAlgorithm(int testsNumber, int maximalNumberLength) {
+	return sumTwoNumbersTestService.testAlgorithm(testsNumber, maximalNumberLength);
     }
 
 }

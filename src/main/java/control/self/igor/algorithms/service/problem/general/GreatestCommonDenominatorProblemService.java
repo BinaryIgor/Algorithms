@@ -8,13 +8,13 @@ import control.self.igor.algorithms.service.problem.ProblemService;
 public class GreatestCommonDenominatorProblemService implements ProblemService<TwoNumbers<Integer>> {
 
     @Override
-    public TwoNumbers<Integer> createProblem() {
+    public TwoNumbers<Integer> createProblem(int problemSize) {
 	// TODO Auto-generated method stub
 	return null;
     }
 
     @Override
-    public List<TwoNumbers<Integer>> createProblems(int problemsNumber) {
+    public List<TwoNumbers<Integer>> createProblems(int problemsNumber, int problemSize) {
 	// TODO Auto-generated method stub
 	return null;
     }

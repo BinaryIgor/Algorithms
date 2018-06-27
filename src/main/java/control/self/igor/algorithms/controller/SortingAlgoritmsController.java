@@ -14,6 +14,7 @@ import control.self.igor.algorithms.service.test.sorting.SortingAlgorithmsTestSe
 @RequestMapping("/sorting")
 public class SortingAlgoritmsController {
 
+    private static final int DEFAULT_MAXIMAL_TO_SORT_LIST_SIZE = 1000;
     private SortingAlgorithmsTestService testService;
 
     @Autowired
@@ -22,11 +23,15 @@ public class SortingAlgoritmsController {
     }
 
     @GetMapping("/bubble-sort")
-    public AlgorithmsTestsReport bubbleSort(@RequestParam("testsNumber") int testsNumber) {
-	if (testsNumber < 0) {
+    public AlgorithmsTestsReport bubbleSort(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
+	if (testsNumber < 1) {
 	    throw BadRequestException.createNotPositiveNumberException();
 	}
-	return testService.testBubbleSort(testsNumber);
+	if (maximalToSortListSize == null || maximalToSortListSize < 1) {
+	    maximalToSortListSize = DEFAULT_MAXIMAL_TO_SORT_LIST_SIZE;
+	}
+	return testService.testBubbleSort(testsNumber, maximalToSortListSize);
     }
 
 }

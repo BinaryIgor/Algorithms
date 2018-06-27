@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ProblemService<Problem> {
 
-    Problem createProblem();
+    Problem createProblem(int problemSize);
 
-    List<Problem> createProblems(int problemsNumber);
+    List<Problem> createProblems(int problemsNumber, int problemSize);
 }

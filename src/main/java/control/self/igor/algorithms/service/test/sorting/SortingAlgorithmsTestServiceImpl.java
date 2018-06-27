@@ -21,8 +21,8 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     }
 
     @Override
-    public AlgorithmsTestsReport testBubbleSort(int testsNumber) {
-	return bubbleSortAlgorithmTestService.testAlgorithm(testsNumber);
+    public AlgorithmsTestsReport testBubbleSort(int testsNumber, int maximalToSortListSize) {
+	return bubbleSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
 
     }
 
