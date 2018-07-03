@@ -11,7 +11,8 @@ import control.self.igor.algorithms.service.algorithm.AlgorithmService;
 import control.self.igor.algorithms.service.problem.ProblemService;
 import control.self.igor.algorithms.service.report.AlgorithmReportService;
 
-public abstract class AbstractAlgorithmTestService<Problem, Solution> {
+public abstract class AbstractAlgorithmTestService<Problem, Solution>
+	implements AlgorithmTestService<Problem, Solution> {
 
     private ProblemService<Problem> problemService;
     private AlgorithmService<Problem, Solution> algorithmService;

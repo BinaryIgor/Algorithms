@@ -13,17 +13,41 @@ import control.self.igor.algorithms.service.test.AlgorithmTestService;
 public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestService {
 
     private AlgorithmTestService<List<Integer>, List<Integer>> bubbleSortAlgorithmTestService;
+    private AlgorithmTestService<List<Integer>, List<Integer>> selectionSortAlgorithmTestService;
+    private AlgorithmTestService<List<Integer>, List<Integer>> insertionSortAlgorithmTestService;
+    private AlgorithmTestService<List<Integer>, List<Integer>> shellSortAlgorithmTestService;
 
     @Autowired
     public SortingAlgorithmsTestServiceImpl(
-	    @Qualifier("BubbleSortAlgorithmTestService") AlgorithmTestService<List<Integer>, List<Integer>> bubbleSortAlgorithmTestService) {
+	    @Qualifier("BubbleSortAlgorithmTestService") AlgorithmTestService<List<Integer>, List<Integer>> bubbleSortAlgorithmTestService,
+	    @Qualifier("SelectionSortAlgorithmTestService") AlgorithmTestService<List<Integer>, List<Integer>> selectionSortAlgorithmTestService,
+	    @Qualifier("InsertionSortAlgorithmTestService") AlgorithmTestService<List<Integer>, List<Integer>> insertionSortAlgorithmTestService,
+	    @Qualifier("ShellSortAlgorithmTestService") AlgorithmTestService<List<Integer>, List<Integer>> shellSortAlgorithmTestService) {
 	this.bubbleSortAlgorithmTestService = bubbleSortAlgorithmTestService;
+	this.selectionSortAlgorithmTestService = selectionSortAlgorithmTestService;
+	this.insertionSortAlgorithmTestService = insertionSortAlgorithmTestService;
+	this.shellSortAlgorithmTestService = shellSortAlgorithmTestService;
     }
 
     @Override
     public AlgorithmsTestsReport testBubbleSort(int testsNumber, int maximalToSortListSize) {
 	return bubbleSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
 
+    }
+
+    @Override
+    public AlgorithmsTestsReport testSelectionSort(int testsNumber, int maximalToSortListSize) {
+	return selectionSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    }
+
+    @Override
+    public AlgorithmsTestsReport testInsertionSort(int testsNumber, int maximalToSortListSize) {
+	return insertionSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    }
+
+    @Override
+    public AlgorithmsTestsReport testShellSort(int testsNumber, int maximalToSortListSize) {
+	return shellSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
     }
 
 }

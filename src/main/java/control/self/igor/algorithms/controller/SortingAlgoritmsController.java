@@ -25,13 +25,52 @@ public class SortingAlgoritmsController {
     @GetMapping("/bubble-sort")
     public AlgorithmsTestsReport bubbleSort(@RequestParam("testsNumber") int testsNumber,
 	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
+	return sort(SortingAlgorithm.BUBBLE, testsNumber, maximalToSortListSize);
+    }
+
+    @GetMapping("/selection-sort")
+    public AlgorithmsTestsReport selectionSort(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
+	return sort(SortingAlgorithm.SELECTION, testsNumber, maximalToSortListSize);
+    }
+
+    @GetMapping("/insertion-sort")
+    public AlgorithmsTestsReport insertionSort(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
+	return sort(SortingAlgorithm.INSERTION, testsNumber, maximalToSortListSize);
+    }
+
+    @GetMapping("/shell-sort")
+    public AlgorithmsTestsReport shellSort(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
+	return sort(SortingAlgorithm.SHELL, testsNumber, maximalToSortListSize);
+    }
+
+    private AlgorithmsTestsReport sort(SortingAlgorithm sortingAlgorithm, int testsNumber,
+	    Integer maximalToSortListSize) {
 	if (testsNumber < 1) {
 	    throw BadRequestException.createNotPositiveNumberException();
 	}
 	if (maximalToSortListSize == null || maximalToSortListSize < 1) {
 	    maximalToSortListSize = DEFAULT_MAXIMAL_TO_SORT_LIST_SIZE;
 	}
-	return testService.testBubbleSort(testsNumber, maximalToSortListSize);
+	if (sortingAlgorithm == SortingAlgorithm.BUBBLE) {
+	    return testService.testBubbleSort(testsNumber, maximalToSortListSize);
+	}
+	if (sortingAlgorithm == SortingAlgorithm.SELECTION) {
+	    return testService.testSelectionSort(testsNumber, maximalToSortListSize);
+	}
+	if (sortingAlgorithm == SortingAlgorithm.INSERTION) {
+	    return testService.testInsertionSort(testsNumber, maximalToSortListSize);
+	}
+	if (sortingAlgorithm == SortingAlgorithm.SHELL) {
+	    return testService.testShellSort(testsNumber, maximalToSortListSize);
+	}
+	return null;
+    }
+
+    private enum SortingAlgorithm {
+	BUBBLE, SELECTION, INSERTION, SHELL, QUICK, MERGE;
     }
 
 }

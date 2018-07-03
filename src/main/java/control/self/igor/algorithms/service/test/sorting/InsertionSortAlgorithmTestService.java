@@ -11,12 +11,12 @@ import control.self.igor.algorithms.service.problem.ProblemService;
 import control.self.igor.algorithms.service.report.AlgorithmReportService;
 import control.self.igor.algorithms.service.test.AbstractAlgorithmTestService;
 
-@Service("BubbleSortAlgorithmTestService")
-public class BubbleSortAlgorithmTestService extends AbstractAlgorithmTestService<List<Integer>, List<Integer>> {
+@Service("InsertionSortAlgorithmTestService")
+public class InsertionSortAlgorithmTestService extends AbstractAlgorithmTestService<List<Integer>, List<Integer>> {
 
     @Autowired
-    public BubbleSortAlgorithmTestService(ProblemService<List<Integer>> problemService,
-	    @Qualifier("BubbleSortAlgorithmService") AlgorithmService<List<Integer>, List<Integer>> algorithmService,
+    public InsertionSortAlgorithmTestService(ProblemService<List<Integer>> problemService,
+	    @Qualifier("InsertionSortAlgorithmService") AlgorithmService<List<Integer>, List<Integer>> algorithmService,
 	    AlgorithmReportService<List<Integer>, List<Integer>> algorithmReportService) {
 	super(problemService, algorithmService, algorithmReportService);
     }
