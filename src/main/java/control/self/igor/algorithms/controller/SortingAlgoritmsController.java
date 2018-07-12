@@ -46,6 +46,12 @@ public class SortingAlgoritmsController {
 	return sort(SortingAlgorithm.SHELL, testsNumber, maximalToSortListSize);
     }
 
+    @GetMapping("/merge-sort")
+    public AlgorithmsTestsReport mergeSort(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
+	return sort(SortingAlgorithm.MERGE, testsNumber, maximalToSortListSize);
+    }
+
     private AlgorithmsTestsReport sort(SortingAlgorithm sortingAlgorithm, int testsNumber,
 	    Integer maximalToSortListSize) {
 	if (testsNumber < 1) {
@@ -65,6 +71,9 @@ public class SortingAlgoritmsController {
 	}
 	if (sortingAlgorithm == SortingAlgorithm.SHELL) {
 	    return testService.testShellSort(testsNumber, maximalToSortListSize);
+	}
+	if (sortingAlgorithm == SortingAlgorithm.MERGE) {
+	    return testService.testMergeSort(testsNumber, maximalToSortListSize);
 	}
 	return null;
     }

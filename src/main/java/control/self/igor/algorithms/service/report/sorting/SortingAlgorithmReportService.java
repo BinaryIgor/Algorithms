@@ -11,24 +11,25 @@ import control.self.igor.algorithms.model.algorithm.SolvedAlgorithms;
 import control.self.igor.algorithms.model.report.AlgorithmTestReport;
 import control.self.igor.algorithms.model.report.AlgorithmsTestsReport;
 import control.self.igor.algorithms.service.report.AlgorithmReportService;
+import control.self.igor.algorithms.util.StringUtil;
 
 @Service
-public class SortingAlgorithmReportService implements AlgorithmReportService<List<Integer>, List<Integer>> {
+public class SortingAlgorithmReportService implements AlgorithmReportService<int[], int[]> {
 
     @Override
-    public AlgorithmTestReport createReport(SolvedAlgorithm<List<Integer>, List<Integer>> solvedAlgorithm) {
+    public AlgorithmTestReport createReport(SolvedAlgorithm<int[], int[]> solvedAlgorithm) {
 	String problemReport = reportProblem(solvedAlgorithm.getProblem());
 	String solutionReport = reportSolution(solvedAlgorithm.getSolution());
 	String durationReport = reportDuration(solvedAlgorithm.getFindingSolutionDuration());
 	return new AlgorithmTestReport(solvedAlgorithm.getName(), problemReport, solutionReport, durationReport);
     }
 
-    private String reportProblem(List<Integer> problem) {
-	return "Sorting of list: " + problem;
+    private String reportProblem(int[] problem) {
+	return "Sorting of list: " + StringUtil.arrayToString(problem);
     }
 
-    private String reportSolution(List<Integer> solution) {
-	return "Sorted list: " + solution;
+    private String reportSolution(int[] solution) {
+	return "Sorted list: " + StringUtil.arrayToString(solution);
     }
 
     private String reportDuration(DurationWithUnit duration) {
@@ -36,16 +37,16 @@ public class SortingAlgorithmReportService implements AlgorithmReportService<Lis
     }
 
     @Override
-    public AlgorithmsTestsReport createReport(SolvedAlgorithms<List<Integer>, List<Integer>> solvedAlgorithms) {
+    public AlgorithmsTestsReport createReport(SolvedAlgorithms<int[], int[]> solvedAlgorithms) {
 	List<AlgorithmTestReport> testsReports = new ArrayList<>();
-	for (SolvedAlgorithm<List<Integer>, List<Integer>> solvedAlgorithm : solvedAlgorithms.getSolvedAlgorithms()) {
+	for (SolvedAlgorithm<int[], int[]> solvedAlgorithm : solvedAlgorithms.getSolvedAlgorithms()) {
 	    testsReports.add(createReport(solvedAlgorithm));
 	}
 	String generalReport = reportGeneral(solvedAlgorithms);
 	return new AlgorithmsTestsReport(generalReport, testsReports);
     }
 
-    private String reportGeneral(SolvedAlgorithms<List<Integer>, List<Integer>> solvedAlgorithms) {
+    private String reportGeneral(SolvedAlgorithms<int[], int[]> solvedAlgorithms) {
 	return "Solving " + solvedAlgorithms.getSolvedAlgorithms().size() + " sorting problems took: "
 		+ solvedAlgorithms.getFindingAllSolutionsDuration();
     }

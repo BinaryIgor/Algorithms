@@ -1,7 +1,5 @@
 package control.self.igor.algorithms.service.test.sorting;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,12 +10,12 @@ import control.self.igor.algorithms.service.report.AlgorithmReportService;
 import control.self.igor.algorithms.service.test.AbstractAlgorithmTestService;
 
 @Service("BubbleSortAlgorithmTestService")
-public class BubbleSortAlgorithmTestService extends AbstractAlgorithmTestService<List<Integer>, List<Integer>> {
+public class BubbleSortAlgorithmTestService extends AbstractAlgorithmTestService<int[], int[]> {
 
     @Autowired
-    public BubbleSortAlgorithmTestService(ProblemService<List<Integer>> problemService,
-	    @Qualifier("BubbleSortAlgorithmService") AlgorithmService<List<Integer>, List<Integer>> algorithmService,
-	    AlgorithmReportService<List<Integer>, List<Integer>> algorithmReportService) {
+    public BubbleSortAlgorithmTestService(ProblemService<int[]> problemService,
+	    @Qualifier("BubbleSortAlgorithmService") AlgorithmService<int[], int[]> algorithmService,
+	    AlgorithmReportService<int[], int[]> algorithmReportService) {
 	super(problemService, algorithmService, algorithmReportService);
     }
 

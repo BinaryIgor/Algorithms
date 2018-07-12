@@ -11,4 +11,6 @@ public interface SortingAlgorithmsTestService {
     AlgorithmsTestsReport testInsertionSort(int testsNumber, int maximalToSortListSize);
 
     AlgorithmsTestsReport testShellSort(int testsNumber, int maximalToSortListSize);
+
+    AlgorithmsTestsReport testMergeSort(int testsNumber, int maximalToSortListSize);
 }

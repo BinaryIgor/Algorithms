@@ -1,7 +1,6 @@
 package control.self.igor.algorithms.service.algorithm.sorting;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import org.springframework.stereotype.Service;
 
@@ -9,21 +8,21 @@ import org.springframework.stereotype.Service;
 public class BubbleSortAlgorithmService extends SortAlgorithmService {
 
     @Override
-    public List<Integer> solve(List<Integer> problem) {
-	List<Integer> toSortList = new ArrayList<>(problem);
-	int problemSize = toSortList.size();
+    public int[] solve(int[] problem) {
+	int[] toSortNumbers = Arrays.copyOf(problem, problem.length);
+	int problemSize = toSortNumbers.length;
 	boolean swapped;
 	do {
 	    swapped = false;
 	    for (int i = 1; i < problemSize; i++) {
-		if (toSortList.get(i) < toSortList.get(i - 1)) {
-		    swap(toSortList, i - 1, i);
+		if (toSortNumbers[i - 1] > toSortNumbers[i]) {
+		    swap(toSortNumbers, i - 1, i);
 		    swapped = true;
 		}
 	    }
 	    --problemSize;
 	} while (swapped);
-	return toSortList;
+	return toSortNumbers;
     }
 
     @Override
