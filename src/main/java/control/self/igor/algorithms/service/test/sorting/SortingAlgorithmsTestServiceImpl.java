@@ -15,6 +15,7 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     private AlgorithmTestService<int[], int[]> insertionSortAlgorithmTestService;
     private AlgorithmTestService<int[], int[]> shellSortAlgorithmTestService;
     private AlgorithmTestService<int[], int[]> mergeSortAlgorithmTestService;
+    private AlgorithmTestService<int[], int[]> quickSortAlgorithmTestService;
 
     @Autowired
     public SortingAlgorithmsTestServiceImpl(
@@ -22,12 +23,14 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
 	    @Qualifier("SelectionSortAlgorithmTestService") AlgorithmTestService<int[], int[]> selectionSortAlgorithmTestService,
 	    @Qualifier("InsertionSortAlgorithmTestService") AlgorithmTestService<int[], int[]> insertionSortAlgorithmTestService,
 	    @Qualifier("ShellSortAlgorithmTestService") AlgorithmTestService<int[], int[]> shellSortAlgorithmTestService,
-	    @Qualifier("MergeSortAlgorithmTestService") AlgorithmTestService<int[], int[]> mergeSortAlgorithmTestService) {
+	    @Qualifier("MergeSortAlgorithmTestService") AlgorithmTestService<int[], int[]> mergeSortAlgorithmTestService,
+	    @Qualifier("QuickSortAlgorithmTestService") AlgorithmTestService<int[], int[]> quickSortAlgorithmTestService) {
 	this.bubbleSortAlgorithmTestService = bubbleSortAlgorithmTestService;
 	this.selectionSortAlgorithmTestService = selectionSortAlgorithmTestService;
 	this.insertionSortAlgorithmTestService = insertionSortAlgorithmTestService;
 	this.shellSortAlgorithmTestService = shellSortAlgorithmTestService;
 	this.mergeSortAlgorithmTestService = mergeSortAlgorithmTestService;
+	this.quickSortAlgorithmTestService = quickSortAlgorithmTestService;
     }
 
     @Override
@@ -54,6 +57,11 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     @Override
     public AlgorithmsTestsReport testMergeSort(int testsNumber, int maximalToSortListSize) {
 	return mergeSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    }
+
+    @Override
+    public AlgorithmsTestsReport testQuickSort(int testsNumber, int maximalToSortListSize) {
+	return quickSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
     }
 
 }

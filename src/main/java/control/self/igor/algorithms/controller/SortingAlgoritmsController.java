@@ -52,6 +52,12 @@ public class SortingAlgoritmsController {
 	return sort(SortingAlgorithm.MERGE, testsNumber, maximalToSortListSize);
     }
 
+    @GetMapping("/quick-sort")
+    public AlgorithmsTestsReport quickSort(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
+	return sort(SortingAlgorithm.QUICK, testsNumber, maximalToSortListSize);
+    }
+
     private AlgorithmsTestsReport sort(SortingAlgorithm sortingAlgorithm, int testsNumber,
 	    Integer maximalToSortListSize) {
 	if (testsNumber < 1) {
@@ -75,11 +81,14 @@ public class SortingAlgoritmsController {
 	if (sortingAlgorithm == SortingAlgorithm.MERGE) {
 	    return testService.testMergeSort(testsNumber, maximalToSortListSize);
 	}
+	if (sortingAlgorithm == SortingAlgorithm.QUICK) {
+	    return testService.testQuickSort(testsNumber, maximalToSortListSize);
+	}
 	return null;
     }
 
     private enum SortingAlgorithm {
-	BUBBLE, SELECTION, INSERTION, SHELL, QUICK, MERGE;
+	BUBBLE, SELECTION, INSERTION, SHELL, MERGE, QUICK;
     }
 
 }
