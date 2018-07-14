@@ -16,7 +16,11 @@ public class SortingProblemService implements ProblemService<int[]> {
 
     @Override
     public int[] createProblem(int problemSize) {
-	return getRandomIntegers(problemSize);
+	int[] randomIntegers = new int[problemSize];
+	for (int i = 0; i < problemSize; i++) {
+	    randomIntegers[i] = NumberGeneratorUtil.generateNumber(MIN_NUMBER, MAX_NUMBER);
+	}
+	return randomIntegers;
     }
 
     @Override
@@ -26,14 +30,6 @@ public class SortingProblemService implements ProblemService<int[]> {
 	    problems.add(createProblem(problemSize));
 	}
 	return problems;
-    }
-
-    private int[] getRandomIntegers(int randomIntegersNumber) {
-	int[] randomIntegers = new int[randomIntegersNumber];
-	for (int i = 0; i < randomIntegersNumber; i++) {
-	    randomIntegers[i] = NumberGeneratorUtil.generateNumber(MIN_NUMBER, MAX_NUMBER);
-	}
-	return randomIntegers;
     }
 
 }

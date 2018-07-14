@@ -3,6 +3,7 @@ package control.self.igor.algorithms.model.report;
 public class AlgorithmTestReport {
 
     private String algorithmName;
+
     private String problem;
     private String solution;
     private String duration;

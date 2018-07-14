@@ -34,34 +34,34 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     }
 
     @Override
-    public AlgorithmsTestsReport testBubbleSort(int testsNumber, int maximalToSortListSize) {
-	return bubbleSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    public AlgorithmsTestsReport testBubbleSort(int testsNumber, int toSortDataSize) {
+	return bubbleSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
 
     }
 
     @Override
-    public AlgorithmsTestsReport testSelectionSort(int testsNumber, int maximalToSortListSize) {
-	return selectionSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    public AlgorithmsTestsReport testSelectionSort(int testsNumber, int toSortDataSize) {
+	return selectionSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
     }
 
     @Override
-    public AlgorithmsTestsReport testInsertionSort(int testsNumber, int maximalToSortListSize) {
-	return insertionSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    public AlgorithmsTestsReport testInsertionSort(int testsNumber, int toSortDataSize) {
+	return insertionSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
     }
 
     @Override
-    public AlgorithmsTestsReport testShellSort(int testsNumber, int maximalToSortListSize) {
-	return shellSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    public AlgorithmsTestsReport testShellSort(int testsNumber, int toSortDataSize) {
+	return shellSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
     }
 
     @Override
-    public AlgorithmsTestsReport testMergeSort(int testsNumber, int maximalToSortListSize) {
-	return mergeSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    public AlgorithmsTestsReport testMergeSort(int testsNumber, int toSortDataSize) {
+	return mergeSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
     }
 
     @Override
-    public AlgorithmsTestsReport testQuickSort(int testsNumber, int maximalToSortListSize) {
-	return quickSortAlgorithmTestService.testAlgorithm(testsNumber, maximalToSortListSize);
+    public AlgorithmsTestsReport testQuickSort(int testsNumber, int toSortDataSize) {
+	return quickSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
     }
 
 }

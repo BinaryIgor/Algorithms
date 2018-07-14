@@ -24,65 +24,64 @@ public class SortingAlgoritmsController {
 
     @GetMapping("/bubble-sort")
     public AlgorithmsTestsReport bubbleSort(@RequestParam("testsNumber") int testsNumber,
-	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
-	return sort(SortingAlgorithm.BUBBLE, testsNumber, maximalToSortListSize);
+	    @RequestParam(name = "toSortDataSize", required = false) Integer toSortDataSize) {
+	return sort(SortingAlgorithm.BUBBLE, testsNumber, toSortDataSize);
     }
 
     @GetMapping("/selection-sort")
     public AlgorithmsTestsReport selectionSort(@RequestParam("testsNumber") int testsNumber,
-	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
-	return sort(SortingAlgorithm.SELECTION, testsNumber, maximalToSortListSize);
+	    @RequestParam(name = "toSortDataSize", required = false) Integer toSortDataSize) {
+	return sort(SortingAlgorithm.SELECTION, testsNumber, toSortDataSize);
     }
 
     @GetMapping("/insertion-sort")
     public AlgorithmsTestsReport insertionSort(@RequestParam("testsNumber") int testsNumber,
-	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
-	return sort(SortingAlgorithm.INSERTION, testsNumber, maximalToSortListSize);
+	    @RequestParam(name = "toSortDataSize", required = false) Integer toSortDataSize) {
+	return sort(SortingAlgorithm.INSERTION, testsNumber, toSortDataSize);
     }
 
     @GetMapping("/shell-sort")
     public AlgorithmsTestsReport shellSort(@RequestParam("testsNumber") int testsNumber,
-	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
-	return sort(SortingAlgorithm.SHELL, testsNumber, maximalToSortListSize);
+	    @RequestParam(name = "toSortDataSize", required = false) Integer toSortDataSize) {
+	return sort(SortingAlgorithm.SHELL, testsNumber, toSortDataSize);
     }
 
     @GetMapping("/merge-sort")
     public AlgorithmsTestsReport mergeSort(@RequestParam("testsNumber") int testsNumber,
-	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
-	return sort(SortingAlgorithm.MERGE, testsNumber, maximalToSortListSize);
+	    @RequestParam(name = "toSortDataSize", required = false) Integer toSortDataSize) {
+	return sort(SortingAlgorithm.MERGE, testsNumber, toSortDataSize);
     }
 
     @GetMapping("/quick-sort")
     public AlgorithmsTestsReport quickSort(@RequestParam("testsNumber") int testsNumber,
-	    @RequestParam(name = "maximalToSortListSize", required = false) Integer maximalToSortListSize) {
-	return sort(SortingAlgorithm.QUICK, testsNumber, maximalToSortListSize);
+	    @RequestParam(name = "toSortDataSize", required = false) Integer toSortDataSize) {
+	return sort(SortingAlgorithm.QUICK, testsNumber, toSortDataSize);
     }
 
-    private AlgorithmsTestsReport sort(SortingAlgorithm sortingAlgorithm, int testsNumber,
-	    Integer maximalToSortListSize) {
+    private AlgorithmsTestsReport sort(SortingAlgorithm sortingAlgorithm, int testsNumber, Integer toSortDataSize) {
 	if (testsNumber < 1) {
 	    throw BadRequestException.createNotPositiveNumberException();
 	}
-	if (maximalToSortListSize == null || maximalToSortListSize < 1) {
-	    maximalToSortListSize = DEFAULT_MAXIMAL_TO_SORT_LIST_SIZE;
+	if (toSortDataSize == null || toSortDataSize < 1) {
+	    toSortDataSize = DEFAULT_MAXIMAL_TO_SORT_LIST_SIZE;
 	}
 	if (sortingAlgorithm == SortingAlgorithm.BUBBLE) {
-	    return testService.testBubbleSort(testsNumber, maximalToSortListSize);
+	    return testService.testBubbleSort(testsNumber, toSortDataSize);
 	}
 	if (sortingAlgorithm == SortingAlgorithm.SELECTION) {
-	    return testService.testSelectionSort(testsNumber, maximalToSortListSize);
+	    return testService.testSelectionSort(testsNumber, toSortDataSize);
 	}
 	if (sortingAlgorithm == SortingAlgorithm.INSERTION) {
-	    return testService.testInsertionSort(testsNumber, maximalToSortListSize);
+	    return testService.testInsertionSort(testsNumber, toSortDataSize);
 	}
 	if (sortingAlgorithm == SortingAlgorithm.SHELL) {
-	    return testService.testShellSort(testsNumber, maximalToSortListSize);
+	    return testService.testShellSort(testsNumber, toSortDataSize);
 	}
 	if (sortingAlgorithm == SortingAlgorithm.MERGE) {
-	    return testService.testMergeSort(testsNumber, maximalToSortListSize);
+	    return testService.testMergeSort(testsNumber, toSortDataSize);
 	}
 	if (sortingAlgorithm == SortingAlgorithm.QUICK) {
-	    return testService.testQuickSort(testsNumber, maximalToSortListSize);
+	    return testService.testQuickSort(testsNumber, toSortDataSize);
 	}
 	return null;
     }

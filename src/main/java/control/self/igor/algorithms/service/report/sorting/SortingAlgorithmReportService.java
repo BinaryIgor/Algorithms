@@ -47,8 +47,9 @@ public class SortingAlgorithmReportService implements AlgorithmReportService<int
     }
 
     private String reportGeneral(SolvedAlgorithms<int[], int[]> solvedAlgorithms) {
-	return "Solving " + solvedAlgorithms.getSolvedAlgorithms().size() + " sorting problems took: "
-		+ solvedAlgorithms.getFindingAllSolutionsDuration();
+	int sortedDataSize = solvedAlgorithms.getSolvedAlgorithms().get(0).getProblem().length;
+	return "Solving " + solvedAlgorithms.getSolvedAlgorithms().size() + " sorting problems each of size "
+		+ sortedDataSize + " took: " + solvedAlgorithms.getFindingAllSolutionsDuration();
     }
 
 }
