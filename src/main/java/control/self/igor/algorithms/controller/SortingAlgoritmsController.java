@@ -58,6 +58,12 @@ public class SortingAlgoritmsController {
 	return sort(SortingAlgorithm.QUICK, testsNumber, toSortDataSize);
     }
 
+    @GetMapping("/median-sort")
+    public AlgorithmsTestsReport medianSort(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "toSortDataSize", required = false) Integer toSortDataSize) {
+	return sort(SortingAlgorithm.MEDIAN, testsNumber, toSortDataSize);
+    }
+
     private AlgorithmsTestsReport sort(SortingAlgorithm sortingAlgorithm, int testsNumber, Integer toSortDataSize) {
 	if (testsNumber < 1) {
 	    throw BadRequestException.createNotPositiveNumberException();
@@ -83,11 +89,14 @@ public class SortingAlgoritmsController {
 	if (sortingAlgorithm == SortingAlgorithm.QUICK) {
 	    return testService.testQuickSort(testsNumber, toSortDataSize);
 	}
+	if (sortingAlgorithm == SortingAlgorithm.MEDIAN) {
+	    return testService.testMedianSort(testsNumber, toSortDataSize);
+	}
 	return null;
     }
 
     private enum SortingAlgorithm {
-	BUBBLE, SELECTION, INSERTION, SHELL, MERGE, QUICK;
+	BUBBLE, SELECTION, INSERTION, SHELL, MERGE, QUICK, MEDIAN;
     }
 
 }

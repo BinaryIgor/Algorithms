@@ -16,6 +16,7 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     private AlgorithmTestService<int[], int[]> shellSortAlgorithmTestService;
     private AlgorithmTestService<int[], int[]> mergeSortAlgorithmTestService;
     private AlgorithmTestService<int[], int[]> quickSortAlgorithmTestService;
+    private AlgorithmTestService<int[], int[]> medianSortAlgorithmTestService;
 
     @Autowired
     public SortingAlgorithmsTestServiceImpl(
@@ -24,13 +25,15 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
 	    @Qualifier("InsertionSortAlgorithmTestService") AlgorithmTestService<int[], int[]> insertionSortAlgorithmTestService,
 	    @Qualifier("ShellSortAlgorithmTestService") AlgorithmTestService<int[], int[]> shellSortAlgorithmTestService,
 	    @Qualifier("MergeSortAlgorithmTestService") AlgorithmTestService<int[], int[]> mergeSortAlgorithmTestService,
-	    @Qualifier("QuickSortAlgorithmTestService") AlgorithmTestService<int[], int[]> quickSortAlgorithmTestService) {
+	    @Qualifier("QuickSortAlgorithmTestService") AlgorithmTestService<int[], int[]> quickSortAlgorithmTestService,
+	    @Qualifier("MedianSortAlgorithmTestService") AlgorithmTestService<int[], int[]> medianSortAlgorithmTestService) {
 	this.bubbleSortAlgorithmTestService = bubbleSortAlgorithmTestService;
 	this.selectionSortAlgorithmTestService = selectionSortAlgorithmTestService;
 	this.insertionSortAlgorithmTestService = insertionSortAlgorithmTestService;
 	this.shellSortAlgorithmTestService = shellSortAlgorithmTestService;
 	this.mergeSortAlgorithmTestService = mergeSortAlgorithmTestService;
 	this.quickSortAlgorithmTestService = quickSortAlgorithmTestService;
+	this.medianSortAlgorithmTestService = medianSortAlgorithmTestService;
     }
 
     @Override
@@ -62,6 +65,11 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     @Override
     public AlgorithmsTestsReport testQuickSort(int testsNumber, int toSortDataSize) {
 	return quickSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
+    }
+
+    @Override
+    public AlgorithmsTestsReport testMedianSort(int testsNumber, int toSortDataSize) {
+	return medianSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
     }
 
 }

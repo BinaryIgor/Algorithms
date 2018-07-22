@@ -15,15 +15,17 @@ public class QuickSortAlgorithmService extends SortAlgorithmService {
     }
 
     private void sort(int[] toSortNumbers, int start, int end) {
-	int pivotIndex = (start + end) / 2;
-	int pivotValue = toSortNumbers[pivotIndex];
+	if (end <= start) {
+	    return;
+	}
+	int pivot = getPivot(toSortNumbers, start, end);
 	int i = start;
 	int j = end;
 	while (i < j) {
-	    while (toSortNumbers[i] < pivotValue) {
+	    while (toSortNumbers[i] < pivot) {
 		i++;
 	    }
-	    while (toSortNumbers[j] > pivotValue) {
+	    while (toSortNumbers[j] > pivot) {
 		j--;
 	    }
 	    if (i <= j) {
@@ -38,6 +40,17 @@ public class QuickSortAlgorithmService extends SortAlgorithmService {
 	if (start < j) {
 	    sort(toSortNumbers, start, j);
 	}
+    }
+
+    private int getPivot(int[] toSortNumbers, int start, int end) {
+	if ((end - start) <= 2) {
+	    return toSortNumbers[start];
+	}
+	int first = toSortNumbers[start], second = toSortNumbers[(start + end + 1) / 2], third = toSortNumbers[end];
+	if (first < third) {
+	    return second > third ? third : second;
+	}
+	return second > first ? first : second;
     }
 
     @Override
