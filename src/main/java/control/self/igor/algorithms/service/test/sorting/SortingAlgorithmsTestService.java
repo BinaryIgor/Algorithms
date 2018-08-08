@@ -16,5 +16,5 @@ public interface SortingAlgorithmsTestService {
 
     AlgorithmsTestsReport testQuickSort(int testsNumber, int toSortDataSize);
 
-    AlgorithmsTestsReport testMedianSort(int testsNumber, int toSortDataSize);
+    AlgorithmsTestsReport testHeapSort(int testsNumber, int toSortDataSize);
 }

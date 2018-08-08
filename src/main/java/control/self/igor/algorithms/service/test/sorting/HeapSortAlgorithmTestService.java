@@ -8,11 +8,11 @@ import control.self.igor.algorithms.service.problem.ProblemService;
 import control.self.igor.algorithms.service.report.AlgorithmReportService;
 import control.self.igor.algorithms.service.test.AbstractAlgorithmTestService;
 
-@Service("MedianSortAlgorithmTestService")
-public class MedianSortAlgorithmTestService extends AbstractAlgorithmTestService<int[], int[]> {
+@Service("HeapSortAlgorithmTestService")
+public class HeapSortAlgorithmTestService extends AbstractAlgorithmTestService<int[], int[]> {
 
-    public MedianSortAlgorithmTestService(ProblemService<int[]> problemService,
-	    @Qualifier("MedianSortAlgorithmService") AlgorithmService<int[], int[]> algorithmService,
+    public HeapSortAlgorithmTestService(ProblemService<int[]> problemService,
+	    @Qualifier("HeapSortAlgorithmService") AlgorithmService<int[], int[]> algorithmService,
 	    AlgorithmReportService<int[], int[]> algoritmReportService) {
 	super(problemService, algorithmService, algoritmReportService);
     }

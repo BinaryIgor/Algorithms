@@ -28,9 +28,7 @@ public class MergeSortAlgorithmService extends SortAlgorithmService {
 	if (toSortNumbers[mid - 1] <= toSortNumbers[mid]) {
 	    return;
 	}
-	int firstArrayIndex = start;
-	int secondArrayIndex = mid;
-	int tmpIndex = 0;
+	int firstArrayIndex = start, secondArrayIndex = mid, tmpIndex = 0;
 	int[] tmp = new int[end - start];
 	for (; firstArrayIndex < mid && secondArrayIndex < end; ++tmpIndex) {
 	    if (toSortNumbers[firstArrayIndex] <= toSortNumbers[secondArrayIndex]) {

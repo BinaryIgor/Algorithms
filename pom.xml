@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 
 	<name>algorithms-application</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Project for testing various kinds of algorithms</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

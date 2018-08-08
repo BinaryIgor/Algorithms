@@ -16,7 +16,7 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     private AlgorithmTestService<int[], int[]> shellSortAlgorithmTestService;
     private AlgorithmTestService<int[], int[]> mergeSortAlgorithmTestService;
     private AlgorithmTestService<int[], int[]> quickSortAlgorithmTestService;
-    private AlgorithmTestService<int[], int[]> medianSortAlgorithmTestService;
+    private AlgorithmTestService<int[], int[]> heapSortAlgorithmTestService;
 
     @Autowired
     public SortingAlgorithmsTestServiceImpl(
@@ -26,14 +26,14 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
 	    @Qualifier("ShellSortAlgorithmTestService") AlgorithmTestService<int[], int[]> shellSortAlgorithmTestService,
 	    @Qualifier("MergeSortAlgorithmTestService") AlgorithmTestService<int[], int[]> mergeSortAlgorithmTestService,
 	    @Qualifier("QuickSortAlgorithmTestService") AlgorithmTestService<int[], int[]> quickSortAlgorithmTestService,
-	    @Qualifier("MedianSortAlgorithmTestService") AlgorithmTestService<int[], int[]> medianSortAlgorithmTestService) {
+	    @Qualifier("HeapSortAlgorithmTestService") AlgorithmTestService<int[], int[]> heapSortAlgorithmTestService) {
 	this.bubbleSortAlgorithmTestService = bubbleSortAlgorithmTestService;
 	this.selectionSortAlgorithmTestService = selectionSortAlgorithmTestService;
 	this.insertionSortAlgorithmTestService = insertionSortAlgorithmTestService;
 	this.shellSortAlgorithmTestService = shellSortAlgorithmTestService;
 	this.mergeSortAlgorithmTestService = mergeSortAlgorithmTestService;
 	this.quickSortAlgorithmTestService = quickSortAlgorithmTestService;
-	this.medianSortAlgorithmTestService = medianSortAlgorithmTestService;
+	this.heapSortAlgorithmTestService = heapSortAlgorithmTestService;
     }
 
     @Override
@@ -68,8 +68,7 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     }
 
     @Override
-    public AlgorithmsTestsReport testMedianSort(int testsNumber, int toSortDataSize) {
-	return medianSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
+    public AlgorithmsTestsReport testHeapSort(int testsNumber, int toSortDataSize) {
+	return heapSortAlgorithmTestService.testAlgorithm(testsNumber, toSortDataSize);
     }
-
 }

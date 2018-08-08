@@ -14,7 +14,7 @@ import control.self.igor.algorithms.service.test.sorting.SortingAlgorithmsTestSe
 @RequestMapping("/sorting")
 public class SortingAlgoritmsController {
 
-    private static final int DEFAULT_MAXIMAL_TO_SORT_LIST_SIZE = 1000;
+    private static final int DEFAULT_TO_SORT_DATA_SIZE = 1000;
     private SortingAlgorithmsTestService testService;
 
     @Autowired
@@ -58,10 +58,10 @@ public class SortingAlgoritmsController {
 	return sort(SortingAlgorithm.QUICK, testsNumber, toSortDataSize);
     }
 
-    @GetMapping("/median-sort")
-    public AlgorithmsTestsReport medianSort(@RequestParam("testsNumber") int testsNumber,
+    @GetMapping("/heap-sort")
+    public AlgorithmsTestsReport heapSort(@RequestParam("testsNumber") int testsNumber,
 	    @RequestParam(name = "toSortDataSize", required = false) Integer toSortDataSize) {
-	return sort(SortingAlgorithm.MEDIAN, testsNumber, toSortDataSize);
+	return sort(SortingAlgorithm.HEAP, testsNumber, toSortDataSize);
     }
 
     private AlgorithmsTestsReport sort(SortingAlgorithm sortingAlgorithm, int testsNumber, Integer toSortDataSize) {
@@ -69,7 +69,7 @@ public class SortingAlgoritmsController {
 	    throw BadRequestException.createNotPositiveNumberException();
 	}
 	if (toSortDataSize == null || toSortDataSize < 1) {
-	    toSortDataSize = DEFAULT_MAXIMAL_TO_SORT_LIST_SIZE;
+	    toSortDataSize = DEFAULT_TO_SORT_DATA_SIZE;
 	}
 	if (sortingAlgorithm == SortingAlgorithm.BUBBLE) {
 	    return testService.testBubbleSort(testsNumber, toSortDataSize);
@@ -89,14 +89,14 @@ public class SortingAlgoritmsController {
 	if (sortingAlgorithm == SortingAlgorithm.QUICK) {
 	    return testService.testQuickSort(testsNumber, toSortDataSize);
 	}
-	if (sortingAlgorithm == SortingAlgorithm.MEDIAN) {
-	    return testService.testMedianSort(testsNumber, toSortDataSize);
+	if (sortingAlgorithm == SortingAlgorithm.HEAP) {
+	    return testService.testHeapSort(testsNumber, toSortDataSize);
 	}
 	return null;
     }
 
     private enum SortingAlgorithm {
-	BUBBLE, SELECTION, INSERTION, SHELL, MERGE, QUICK, MEDIAN;
+	BUBBLE, SELECTION, INSERTION, SHELL, MERGE, QUICK, HEAP
     }
 
 }

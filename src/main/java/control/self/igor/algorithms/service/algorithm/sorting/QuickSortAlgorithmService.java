@@ -18,9 +18,7 @@ public class QuickSortAlgorithmService extends SortAlgorithmService {
 	if (end <= start) {
 	    return;
 	}
-	int pivot = getPivot(toSortNumbers, start, end);
-	int i = start;
-	int j = end;
+	int pivot = getPivot(toSortNumbers, start, end), i = start, j = end;
 	while (i < j) {
 	    while (toSortNumbers[i] < pivot) {
 		i++;

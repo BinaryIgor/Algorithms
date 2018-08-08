@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import control.self.igor.algorithms.model.DurationWithUnit;
 import control.self.igor.algorithms.model.algorithm.SolvedAlgorithm;
 import control.self.igor.algorithms.model.algorithm.SolvedAlgorithms;
 import control.self.igor.algorithms.model.report.AlgorithmTestReport;
@@ -20,7 +19,7 @@ public class SortingAlgorithmReportService implements AlgorithmReportService<int
     public AlgorithmTestReport createReport(SolvedAlgorithm<int[], int[]> solvedAlgorithm) {
 	String problemReport = reportProblem(solvedAlgorithm.getProblem());
 	String solutionReport = reportSolution(solvedAlgorithm.getSolution());
-	String durationReport = reportDuration(solvedAlgorithm.getFindingSolutionDuration());
+	String durationReport = solvedAlgorithm.getFindingSolutionDuration().toString();
 	return new AlgorithmTestReport(solvedAlgorithm.getName(), problemReport, solutionReport, durationReport);
     }
 
@@ -30,10 +29,6 @@ public class SortingAlgorithmReportService implements AlgorithmReportService<int
 
     private String reportSolution(int[] solution) {
 	return "Sorted list: " + StringUtil.arrayToString(solution);
-    }
-
-    private String reportDuration(DurationWithUnit duration) {
-	return "Finding solution took: " + duration;
     }
 
     @Override

@@ -11,8 +11,8 @@ import control.self.igor.algorithms.util.NumberGeneratorUtil;
 @Service
 public class SortingProblemService implements ProblemService<int[]> {
 
-    private final static int MIN_NUMBER = -1000;
-    private final static int MAX_NUMBER = 1000;
+    private static final int MIN_NUMBER = -1000;
+    private static final int MAX_NUMBER = 1000;
 
     @Override
     public int[] createProblem(int problemSize) {
