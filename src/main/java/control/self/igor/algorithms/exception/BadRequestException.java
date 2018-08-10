@@ -10,7 +10,7 @@ public class BadRequestException extends RuntimeException {
 	super(message);
     }
 
-    public static BadRequestException createNotPositiveNumberException() {
+    public static BadRequestException createNonPositiveNumberException() {
 	return new BadRequestException("Needed number should have positive value");
     }
 }

@@ -66,7 +66,7 @@ public class SortingAlgoritmsController {
 
     private AlgorithmsTestsReport sort(SortingAlgorithm sortingAlgorithm, int testsNumber, Integer toSortDataSize) {
 	if (testsNumber < 1) {
-	    throw BadRequestException.createNotPositiveNumberException();
+	    throw BadRequestException.createNonPositiveNumberException();
 	}
 	if (toSortDataSize == null || toSortDataSize < 1) {
 	    toSortDataSize = DEFAULT_TO_SORT_DATA_SIZE;

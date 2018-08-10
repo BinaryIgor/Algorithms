@@ -1,5 +1,6 @@
 package control.self.igor.algorithms.model.problem;
 
+@SuppressWarnings("hiding")
 public abstract class TwoNumbers<Number> {
 
     private Number first;

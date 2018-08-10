@@ -1,12 +1,15 @@
 package control.self.igor.algorithms.service.algorithm.general;
 
-import control.self.igor.algorithms.model.problem.TwoNumbers;
+import org.springframework.stereotype.Service;
+
+import control.self.igor.algorithms.model.problem.TwoNumbersAsIntegers;
 import control.self.igor.algorithms.service.algorithm.AlgorithmService;
 
-public class GreatestCommonDenominatorModAlgorithmService implements AlgorithmService<TwoNumbers<Integer>, Integer> {
+@Service("GreatestCommonDivisorAlgorithmService")
+public class GreatestCommonDivisorAlgorithmService implements AlgorithmService<TwoNumbersAsIntegers, Integer> {
 
     @Override
-    public Integer solve(TwoNumbers<Integer> problem) {
+    public Integer solve(TwoNumbersAsIntegers problem) {
 	int first = problem.getFirst();
 	int second = problem.getSecond();
 	while (second != 0) {
@@ -19,7 +22,7 @@ public class GreatestCommonDenominatorModAlgorithmService implements AlgorithmSe
 
     @Override
     public String getAlgorithmName() {
-	return "GreatestCommondDenominatorModAlgorithm";
+	return "Greatest Common Divisor Algorithm";
     }
 
 }

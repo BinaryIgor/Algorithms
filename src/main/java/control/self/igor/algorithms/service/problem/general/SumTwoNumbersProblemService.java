@@ -20,8 +20,9 @@ public class SumTwoNumbersProblemService implements ProblemService<TwoNumbersAsA
     @Override
     public List<TwoNumbersAsArrays> createProblems(int problemsNumber, int problemSize) {
 	List<TwoNumbersAsArrays> problems = new ArrayList<>();
-	for (int i = 0; i < problemsNumber; i++)
+	for (int i = 0; i < problemsNumber; i++) {
 	    problems.add(getRandomTwoNumbers(problemSize));
+	}
 	return problems;
     }
 

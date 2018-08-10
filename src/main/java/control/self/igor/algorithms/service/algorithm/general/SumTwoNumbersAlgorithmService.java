@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import org.springframework.stereotype.Service;
 
-import control.self.igor.algorithms.exception.SolverConditionException;
 import control.self.igor.algorithms.model.problem.TwoNumbersAsArrays;
 import control.self.igor.algorithms.service.algorithm.AlgorithmService;
 
@@ -30,8 +29,6 @@ public class SumTwoNumbersAlgorithmService implements AlgorithmService<TwoNumber
     }
 
     private int[] calculateSum(int[] first, int[] second) {
-	if (first.length != second.length)
-	    throw SolverConditionException.createUnequalArraysLengthException();
 	int lastPosition = first.length - 1;
 	int carry = 0;
 	int[] sum = new int[first.length + 1];

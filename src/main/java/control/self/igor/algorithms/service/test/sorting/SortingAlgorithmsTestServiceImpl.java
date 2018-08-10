@@ -1,6 +1,5 @@
 package control.self.igor.algorithms.service.test.sorting;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,6 @@ public class SortingAlgorithmsTestServiceImpl implements SortingAlgorithmsTestSe
     private AlgorithmTestService<int[], int[]> quickSortAlgorithmTestService;
     private AlgorithmTestService<int[], int[]> heapSortAlgorithmTestService;
 
-    @Autowired
     public SortingAlgorithmsTestServiceImpl(
 	    @Qualifier("BubbleSortAlgorithmTestService") AlgorithmTestService<int[], int[]> bubbleSortAlgorithmTestService,
 	    @Qualifier("SelectionSortAlgorithmTestService") AlgorithmTestService<int[], int[]> selectionSortAlgorithmTestService,

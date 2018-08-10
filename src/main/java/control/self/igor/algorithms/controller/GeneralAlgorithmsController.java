@@ -24,13 +24,31 @@ public class GeneralAlgorithmsController {
 
     @GetMapping("/sum")
     public AlgorithmsTestsReport sum(@RequestParam("testsNumber") int testsNumber,
-	    @RequestParam(name = "maximalNumberLength", required = true) Integer maximalNumberLength) {
+	    @RequestParam(name = "maxNumberLength", required = false) Integer maxNumberLength) {
 	if (testsNumber < 1) {
-	    throw BadRequestException.createNotPositiveNumberException();
+	    throw BadRequestException.createNonPositiveNumberException();
 	}
-	if (maximalNumberLength == null || maximalNumberLength < MIN_NUMBER_LENGTH) {
-	    maximalNumberLength = MIN_NUMBER_LENGTH;
+	if (maxNumberLength == null || maxNumberLength < MIN_NUMBER_LENGTH) {
+	    maxNumberLength = MIN_NUMBER_LENGTH;
 	}
-	return service.testSumTwoNumbersAlgorithm(testsNumber, maximalNumberLength);
+	return service.testSumTwoNumbersAlgorithm(testsNumber, maxNumberLength);
+    }
+
+    @GetMapping("/greatest-common-divisor")
+    public AlgorithmsTestsReport greatestCommonDivsor(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maxNumberValue", required = false) Integer maxNumberValue) {
+	if (testsNumber < 1) {
+	    throw BadRequestException.createNonPositiveNumberException();
+	}
+	return service.testGreatestCommonDivisorAlgorithm(testsNumber, maxNumberValue);
+    }
+
+    @GetMapping("/lowest-common-multiple")
+    public AlgorithmsTestsReport LowestCommonMultiple(@RequestParam("testsNumber") int testsNumber,
+	    @RequestParam(name = "maxNumberValue", required = false) Integer maxNumberValue) {
+	if (testsNumber < 1) {
+	    throw BadRequestException.createNonPositiveNumberException();
+	}
+	return service.testLowestCommonMultipleAlgorithm(testsNumber, maxNumberValue);
     }
 }
