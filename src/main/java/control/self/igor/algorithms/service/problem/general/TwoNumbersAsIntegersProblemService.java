@@ -14,6 +14,11 @@ public class TwoNumbersAsIntegersProblemService implements ProblemService<TwoNum
 
     @Override
     public TwoNumbersAsIntegers createProblem(int problemSize) {
+	if (problemSize == 0) {
+	    problemSize = 1;
+	} else if (problemSize < 0) {
+	    problemSize = -problemSize;
+	}
 	int first = NumberGeneratorUtil.generateNumber(1, problemSize);
 	int second = NumberGeneratorUtil.generateNumber(1, problemSize);
 	return new TwoNumbersAsIntegers(first, second);

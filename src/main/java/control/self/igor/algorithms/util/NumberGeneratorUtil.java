@@ -20,7 +20,7 @@ public class NumberGeneratorUtil {
 	    min = max;
 	    max = tmp;
 	}
-	int range = (int) (Math.random() * (max - min));
+	int range = (int) Math.round((Math.random() * (max - min)));
 	return min + range;
     }
 }

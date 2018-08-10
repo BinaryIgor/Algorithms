@@ -15,6 +15,7 @@ import control.self.igor.algorithms.service.test.general.GeneralAlgorithmsTestSe
 public class GeneralAlgorithmsController {
 
     private static final int MIN_NUMBER_LENGTH = 1;
+    private static final int DEFAULT_MAX_NUMBER_VALUE = 100;
     private GeneralAlgorithmsTestService service;
 
     @Autowired
@@ -35,20 +36,31 @@ public class GeneralAlgorithmsController {
     }
 
     @GetMapping("/greatest-common-divisor")
-    public AlgorithmsTestsReport greatestCommonDivsor(@RequestParam("testsNumber") int testsNumber,
+    public AlgorithmsTestsReport greatestCommonDivisor(@RequestParam("testsNumber") int testsNumber,
 	    @RequestParam(name = "maxNumberValue", required = false) Integer maxNumberValue) {
-	if (testsNumber < 1) {
-	    throw BadRequestException.createNonPositiveNumberException();
-	}
-	return service.testGreatestCommonDivisorAlgorithm(testsNumber, maxNumberValue);
+	return common(testsNumber, maxNumberValue, CommonType.GREATEST_COMMON_DIVISOR);
     }
 
     @GetMapping("/lowest-common-multiple")
-    public AlgorithmsTestsReport LowestCommonMultiple(@RequestParam("testsNumber") int testsNumber,
+    public AlgorithmsTestsReport lowestCommonMultiple(@RequestParam("testsNumber") int testsNumber,
 	    @RequestParam(name = "maxNumberValue", required = false) Integer maxNumberValue) {
-	if (testsNumber < 1) {
+	return common(testsNumber, maxNumberValue, CommonType.LOWEST_COMMON_MULTIPLE);
+    }
+
+    private AlgorithmsTestsReport common(int testsNumber, Integer maxNumberValue, CommonType commonType) {
+	if (maxNumberValue == null) {
+	    maxNumberValue = DEFAULT_MAX_NUMBER_VALUE;
+	}
+	if (testsNumber < 1 || maxNumberValue < 1) {
 	    throw BadRequestException.createNonPositiveNumberException();
 	}
+	if (commonType.equals(CommonType.GREATEST_COMMON_DIVISOR)) {
+	    return service.testGreatestCommonDivisorAlgorithm(testsNumber, maxNumberValue);
+	}
 	return service.testLowestCommonMultipleAlgorithm(testsNumber, maxNumberValue);
+    }
+
+    private enum CommonType {
+	GREATEST_COMMON_DIVISOR, LOWEST_COMMON_MULTIPLE;
     }
 }

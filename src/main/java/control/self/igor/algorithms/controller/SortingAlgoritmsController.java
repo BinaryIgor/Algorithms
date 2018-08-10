@@ -89,10 +89,7 @@ public class SortingAlgoritmsController {
 	if (sortingAlgorithm == SortingAlgorithm.QUICK) {
 	    return testService.testQuickSort(testsNumber, toSortDataSize);
 	}
-	if (sortingAlgorithm == SortingAlgorithm.HEAP) {
-	    return testService.testHeapSort(testsNumber, toSortDataSize);
-	}
-	return null;
+	return testService.testHeapSort(testsNumber, toSortDataSize);
     }
 
     private enum SortingAlgorithm {
